@@ -5,7 +5,7 @@ Requires at least: 3.0.1
 Tested up to: 3.6.1
 Stable tag: 1.0
 
-[TR] Wordpress sitenizde Duyurular yayınlamanızı sağlar.<a href="http://gencbilisim.net/notices-duyurular-eklentisi">Detaylar</a>
+[TR] Wordpress sitenizde Duyurular yayınlamanızı sağlar.
 [EN] Easy way to adding notifications in your Wordpress site
 
 == Description ==
