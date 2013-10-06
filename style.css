@@ -16,6 +16,11 @@
 	padding: 4px 0;
 	font-size: 16px;
 	line-height: 20px;
+	color: #c09853;
+}
+
+.alert p {
+	color: #c09853;
 }
 
 .alert .close {
@@ -56,20 +61,6 @@
 .alert-info h4,
 .alert-info p {
 	color: #3a87ad;
-}
-
-.alert-block {
-	padding-top: 14px;
-	padding-bottom: 14px;
-}
-
-.alert-block > p,
-.alert-block > ul {
-	margin-bottom: 0;
-}
-
-.alert-block p + p {
-	margin-top: 5px;
 }
 
 .close {
@@ -183,26 +174,61 @@ button.close {
 	vertical-align: text-bottom;
 }
 
-/*ileri geri  oklarını dışarı  taşımak için */
-.fancybox-nav {
+/*style fo  showWindowTypeNotices*/
+.windowBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.85);
+	z-index: 999998;
+
+}
+
+.window {
+	overflow: auto;
+	min-height: 50px;
+	min-width: 200px;
+}
+
+#windowBox {
+	background-color: rgba(0, 0, 0, 0.85);
+	position: fixed;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	z-index: 999999;
+	max-width: 850px;
+	max-height: 400px;
+}
+
+.window-nav {
 	width: 60px;
 }
 
-.fancybox-nav span {
-	visibility: visible;
+.window-nav span {
+	background-image: url("fancybox_sprite.png");
+	cursor: pointer;
+	height: 34px;
+	margin-top: -18px;
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	z-index: 8040;
 	opacity: 0.5;
 }
 
-.fancybox-nav:hover span {
+.window-nav span:hover {
 	opacity: 1;
 }
 
-.fancybox-next {
-	right: -60px;
+.window-nav-previous span {
+	background-position: 0 -36px;
+	left: -50px;
 }
 
-.fancybox-prev {
-	left: -60px;
+.window-nav-next span {
+	background-position: 0 -72px;
+	right: -50px;
 }
-
-/*ileri geri  oklarını dışarı  taşımak için son *

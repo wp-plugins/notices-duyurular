@@ -3,7 +3,9 @@ Contributors: sametatabasch
 Tags: notice, duyuru,post_type,cookie
 Requires at least: 3.0.1
 Tested up to: 3.6.1
-Stable tag: 1.0
+Stable tag: 1.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 [TR] Wordpress sitenizde Duyurular yayınlamanızı sağlar.
 [EN] Easy way to adding notifications in your Wordpress site
@@ -12,6 +14,7 @@ Stable tag: 1.0
 [TR]Bu  eklenti  wordpress blogunuzda duyurular yayınlamanızı  sağlıyor.Duyuruyu  yayınlarken şu ayarlamaları yapabiliyorsunuz:
 
 * Duyuruyu sitenize gelen herkes mi yoksa sadece Giriş  yapmış  kullanıcılar mı  görecek ?
+* Duyuru sayfanın üstünde şerit halinde mi  gözükecek yoksa Sayfanın ortasında pencere şeklinde mi ?
 * Duyuru ne zamana kadar gösterilecek?
 * Duyurunun tasarımı  nasıl olacak (4 farklı seçenek )
     
@@ -20,6 +23,7 @@ Bunlara ek olarak  ziyaretci duyuruyu bir daha görmek istemediğinde gözükmes
 [EN]You can add notifications and displaying them with fancybox effect. Also this plugin has this features;
 
 * You can set visibility of notifications. Displaying for everyone or only logged in users.
+* You can set easily position of notices.
 * You can set easily displaying date of notices. Notifications will auto expire.
 * 4 different type of notifications.
   
@@ -36,4 +40,17 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Screenshots ==
 1. Example for Bar display mode. 
-2. Example for add new notice page.
+2. Example for Window display mode.
+3. Example for add new notice page.
+
+== Changelog ==
+
+= 1.1 =
+
+- Add window display mode
+- Add close effect
+
+
+= 1.0 =
+
+- Initial release.
