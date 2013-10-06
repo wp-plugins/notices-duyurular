@@ -1,0 +1,234 @@
+.alert {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	background-color: #fcf8e3;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	height: 100%;
+	font-size: 15px;
+	text-align: left;
+	color: #c09853;
+}
+
+.alert h4 {
+	margin: 0 0 0px 10px;
+	font-weight: bold;
+	padding: 4px 0;
+	font-size: 16px;
+	line-height: 20px;
+	color: #c09853;
+}
+
+.alert p {
+	color: #c09853;
+}
+
+.alert .close {
+	position: relative;
+	top: 0px;
+	right: 5px;
+	line-height: 20px;
+}
+
+.alert-success {
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
+.alert-success h4,
+.alert-success p {
+	color: #468847;
+}
+
+.alert-error {
+	color: #b94a48;
+	background-color: #f2dede;
+	border-color: #eed3d7;
+}
+
+.alert-error h4,
+.alert-error p {
+	color: #b94a48;
+}
+
+.alert-info {
+	color: #3a87ad;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+.alert-info h4,
+.alert-info p {
+	color: #3a87ad;
+}
+
+.close {
+	float: right;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #000000;
+	text-shadow: 0 1px 0 #ffffff;
+	opacity: 0.2;
+	filter: alpha(opacity=20);
+}
+
+.close:hover,
+.close:focus {
+	color: #000000;
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}
+
+button.close {
+	padding: 0;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	-webkit-appearance: none;
+}
+
+.alert h1, h2, h3, h4, h5, h6 {
+	clear: none;
+}
+
+.alert p {
+	margin: 0 10px 0 10px;
+	line-height: 20px;
+}
+
+.bar {
+	position: static;
+	width: 100%;
+	margin-bottom: 2px;
+	min-height: 30px;
+}
+
+.bar h4 {
+	clear: left;
+	float: left;
+	margin-right: 10px;
+}
+
+.bar p {
+	padding-top: 5px;
+}
+
+.noticeContainer {
+	position: fixed;
+	top: 0px;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+}
+
+.noticeContainer-admin {
+	position: fixed;
+	top: 28px;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+}
+
+.alert .okundu {
+	font-size: 10px;
+	padding: 0 5px 0 0;
+	text-align: right;
+	text-decoration: none;
+	display: none;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.alert .okundu a {
+	color: #c09853;
+}
+
+.alert-info .okundu a {
+	color: #3a87ad;
+}
+
+.alert-danger .okundu a,
+.alert-error .okundu a {
+	color: #b94a48;
+}
+
+.alert-success .okundu a {
+	color: #468847;
+}
+
+.alert:hover .okundu {
+	display: block;
+}
+
+/*Admin Panel*/
+.misc-pub-section .alert {
+	margin-bottom: 3px;
+}
+
+.misc-pub-section .alert input {
+	margin-right: 5px;
+	vertical-align: text-bottom;
+}
+
+/*style fo  showWindowTypeNotices*/
+.windowBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.85);
+	z-index: 999998;
+
+}
+
+.window {
+	overflow: auto;
+	min-height: 50px;
+	min-width: 200px;
+}
+
+#windowBox {
+	background-color: rgba(0, 0, 0, 0.85);
+	position: fixed;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	z-index: 999999;
+	max-width: 850px;
+	max-height: 400px;
+}
+
+.window-nav {
+	width: 60px;
+}
+
+.window-nav span {
+	background-image: url("fancybox_sprite.png");
+	cursor: pointer;
+	height: 34px;
+	margin-top: -18px;
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	z-index: 8040;
+	opacity: 0.5;
+}
+
+.window-nav span:hover {
+	opacity: 1;
+}
+
+.window-nav-previous span {
+	background-position: 0 -36px;
+	left: -50px;
+}
+
+.window-nav-next span {
+	background-position: 0 -72px;
+	right: -50px;
+}
