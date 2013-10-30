@@ -64,6 +64,7 @@ jQ(document).ready(function () {
 			jQ(this).remove()
 		});
 	});
+	jQ('.noticeContainer').css({'top': jQ('#wpadminbar').height()});//adminbar yüksekiliği notice container e aktarılıyor
 });
 
 jQ(window).resize(function () {

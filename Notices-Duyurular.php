@@ -4,7 +4,7 @@
  * Plugin URI: http://gencbilisim.net/notices-duyurular-eklentisi/
  * Description: Easy way to publish Notices in your Wordpress site
  * Author: Samet ATABAŞ
- * Version: 1.1
+ * Version: 1.2
  * Author URI: http://www.gençbilişim.net
  * Text Domain: Notices-Duyurular
  * Domain Path: /lang
@@ -254,7 +254,6 @@ class GB_Duyurular {
 	 *  add_action('wp_footer', array(&$this, 'GB_D_showNotice'));
 	 */
 	public function GB_D_showNotice() {
-		if ( is_admin_bar_showing() ) $this->noticeContent = '<div class="noticeContainer-admin">';
 		foreach ( $this->GB_D_getNotice() as $notice ):
 			if ( $notice['lastDisplayDate'] < date_i18n( 'Y-m-d H:i:s' ) ) { // Son gösterim tarihi geçen duyuru çöpe taşınır
 				wp_trash_post( $notice['ID'] );
