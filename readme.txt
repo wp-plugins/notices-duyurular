@@ -2,8 +2,8 @@
 Contributors: sametatabasch
 Tags: notice, duyuru,post_type,cookie
 Requires at least: 3.0.1
-Tested up to: 3.6.1
-Stable tag: 1.2
+Tested up to: 3.7.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,9 +45,13 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Changelog ==
 
+= 1.3 =
+
+- Bug fix
+
 = 1.2 =
 
--Conflict was resolved by admin bar for MP6 plugin
+- Conflict was resolved by admin bar for MP6 plugin
 
 = 1.1 =
 
