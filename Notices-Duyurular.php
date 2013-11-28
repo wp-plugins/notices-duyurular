@@ -4,7 +4,7 @@
  * Plugin URI: http://gencbilisim.net/notices-duyurular-eklentisi/
  * Description: Easy way to publish Notices in your Wordpress site
  * Author: Samet ATABAŞ
- * Version: 1.3
+ * Version: 1.4
  * Author URI: http://www.gençbilişim.net
  * Text Domain: Notices-Duyurular
  * Domain Path: /lang
@@ -12,7 +12,6 @@
 //todo Multi  site için uyumlu  hale gelecek #14
 //todo Admin panelde  gözükmesi sağlanacak check box ile denetlenebilir.
 //todo * Çöpe taşınıca metaların boşalması #11
-//todo duyurudaki çarpıya basınca kullanıcıya birdaha gösterilsin mi sorusu sorulacak ve ona göre işlem yapılacak okundu linki kaldırılacak
 class GB_Duyurular {
 
 	/**
