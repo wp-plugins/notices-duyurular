@@ -267,18 +267,18 @@ class GB_Duyurular {
 					if ( $notice['whoCanSee'] == 'everyone' ) {
 						$this->noticeContent .= '
 					  <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . '" >
+					  	<button type="button" class="close" >&times;</button>
 					    <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
 					    ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
-					    <p class="okundu"><a href="?GB_D_noticeId=' . $notice["ID"] . '">' . __( 'Don\'t Show', $this->textDomainString ) . '</a></p>
 					  </div>';
 					}
 					else {
 						if ( is_user_logged_in() ) {
 							$this->noticeContent .= '
 						    <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . '" >
+						    	<button type="button" class="close" >&times;</button>
 						      <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
 						      ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
-						      <p class="okundu"><a href="?GB_D_noticeId=' . $notice["ID"] . '">' . __( 'Don\'t Show', $this->textDomainString ) . '</a></p>
 						    </div>';
 						}
 					}
@@ -290,7 +290,6 @@ class GB_Duyurular {
 					      <button type="button" class="close" >&times;</button>
 					      <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
 					      ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
-					      <p class="okundu"><a href="?GB_D_noticeId=' . $notice["ID"] . '">' . __( 'Don\'t Show', $this->textDomainString ) . '</a></p>
 					    </div>';
 					}
 					else {
@@ -300,7 +299,6 @@ class GB_Duyurular {
 						    <button type="button" class="close">&times;</button>
 						    <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
 						    ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
-						    <p class="okundu"><a href="?GB_D_noticeId=' . $notice["ID"] . '">' . __( 'Don\'t Show', $this->textDomainString ) . '</a></p>
 						  </div>';
 						}
 					}
@@ -321,7 +319,7 @@ class GB_Duyurular {
 		if ( $this->isThereWindowType ) {
 			$this->noticeContent .= '
 				<script type="text/javascript">
-					jQuery(document).ready(function () {showWindowType();});
+					duyuruWindow.show();
 				</script>
 			</div>';
 		}
@@ -341,7 +339,7 @@ class GB_Duyurular {
 	public function  GB_D_addScriptAndStyle() {
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_style( 'notice_style', plugins_url( 'style.css', __FILE__ ) );
-		wp_enqueue_script( 'notice', plugins_url( 'default.js', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_script( 'notice', plugins_url( 'default.js.php', __FILE__ ), array( 'jquery' ) );
 	}
 
 	/**
