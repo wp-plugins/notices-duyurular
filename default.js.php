@@ -148,8 +148,7 @@ jQuery(document).ready(function () {
 		var currentId = jQuery(this).parent()[0].id;
 		var reg = /\d/g;
 		currentId = currentId.match(reg).join('');
-var icerik ='
-<div class="bar alert alert-info">' +
+var icerik ='<div class="bar alert alert-info">' +
 	'<h4></h4>' +
 	'<p><?php _e( 'If you do not want to see again this notice,click "do not show again".', $GB_Duyurular->textDomainString ) ?></p>' +
 	'<button id="yes" class="btn"><?php _e( 'Do not show again', $GB_Duyurular->textDomainString ) ?></button> - <button id="no" class="btn"><?php _e( 'Close', $GB_Duyurular->textDomainString ) ?></button>' +
