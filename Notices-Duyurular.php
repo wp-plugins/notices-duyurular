@@ -4,7 +4,7 @@
  * Plugin URI: http://gencbilisim.net/notices-duyurular-eklentisi/
  * Description: Easy way to publish Notices in your Wordpress site
  * Author: Samet ATABAŞ
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author URI: http://www.gençbilişim.net
  * Text Domain: Notices-Duyurular
  * Domain Path: /lang
@@ -114,8 +114,9 @@ class GB_Duyurular {
 		$this->GB_D_getMeta( $post_id );
 		if ( empty( $this->meta['lastDisplayDate'] ) ) {
 			$date = $this->GB_D_getDate();
-			$date['month'] ++;
-		}
+			$date['month'] ++;// ön tanımlı tarih o anın bir ay sonrası
+                        if($date['month']<10) $date['month']='0'.$date['month'];
+                }
 		else {
 			$date = $this->GB_D_getDate( $this->meta['lastDisplayDate'] );
 		}
@@ -338,7 +339,13 @@ class GB_Duyurular {
 	public function  GB_D_addScriptAndStyle() {
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_style( 'notice_style', plugins_url( 'style.css', __FILE__ ) );
-		wp_enqueue_script( 'notice', plugins_url( 'default.js.php', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_script( 'notice', plugins_url( 'default.js', __FILE__ ), array( 'jquery' ) );
+                $translation_array = array( 
+                    'content' => __( 'If you do not want to see again this notice,click &#34;do not show again&#34;.', $this->textDomainString ), 
+                    'dontShow'=> __('Do not show again', $this->textDomainString),
+                    'close'   => __('Close', $this->textDomainString)
+                );
+                wp_localize_script( 'notice', 'message', $translation_array );
 	}
 
 	/**
@@ -397,6 +404,10 @@ class GB_Duyurular {
 			}
 			else continue;
 		}
+		/**
+		 * Okundu işareti kaldırılan duyurunun eğer cookiesi  varsa o cookie yi siliyor
+		 * okunması olarak işaretle işlemini kullanıcı kendisi yapamadığı için bu işlem şimdilik amaçsız
+		 */
 		if ( isset( $_COOKIE["GB_D_{$blog_id}_okunanDuyurular"] ) ) {
 			$okunanDuyurular = $_COOKIE["GB_D_{$blog_id}_okunanDuyurular"];
 			if ( array_key_exists( $noticeId, $okunanDuyurular ) ) {

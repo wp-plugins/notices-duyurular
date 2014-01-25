@@ -1,7 +1,3 @@
-<?php
-include "../../../wp-load.php";
-header( "content-type: application/x-javascript" );
-?>
 /**
  * pencere modundaki duyuruları gösterecek fonksiyon
  */
@@ -16,7 +12,7 @@ jQuery.fn.Window = function (content, isClass) {
 	 * sayfadaki  konumu  yeniden  düzenler
 	 */
 	this.reLocate = function () {
-		jQuery('.window').css({'max-height': (window.innerHeight / 2), 'max-width': (window.innerWidth / 2)});
+		jQuery('.window').css({'max-height': (window.innerHeight -100), 'max-width': (window.innerWidth - 100)});
 		var windowBoxWidth = jQuery('#windowBox').width();
 		var windowBoxHeight = jQuery('#windowBox').height();
 		var windowBoxLeft = (window.innerWidth - windowBoxWidth) / 2;
@@ -94,9 +90,9 @@ jQuery.fn.Window = function (content, isClass) {
 	this.hide = function () {
 		var icerik = '<div class="alert window alert-info">' +
 				'<h4></h4>' +
-				'<p><?php _e( 'If you do not want to see again this notice,click "do not show again".', $GB_Duyurular->textDomainString ) ?></p>' +
+				'<p>'+message.content+'</p>' +
 				'<div id="yes-no" class="center">' +
-					'<button id="yes" class="btn"><?php _e( 'Do not show again', $GB_Duyurular->textDomainString ) ?></button> - <button id="no" class="btn"><?php _e( 'Close', $GB_Duyurular->textDomainString ) ?></button>' +
+					'<button id="yes" class="btn">'+message.dontShow+'</button> - <button id="no" class="btn">'+message.close+'</button>' +
 				'</div>' +
 			'</div>';
 var genislik = jQuery('#windowBox').width();
@@ -154,8 +150,8 @@ jQuery(document).ready(function () {
 		currentId = currentId.match(reg).join('');
 var icerik ='<div class="bar alert alert-info">' +
 		'<h4></h4>' +
-		'<p><?php _e( 'If you do not want to see again this notice,click "do not show again".', $GB_Duyurular->textDomainString ) ?></p>' +
-		'<button id="yes" class="btn"><?php _e( 'Do not show again', $GB_Duyurular->textDomainString ) ?></button> - <button id="no" class="btn"><?php _e( 'Close', $GB_Duyurular->textDomainString ) ?></button>' +
+		'<p></p>' +
+		'<button id="yes" class="btn">'+message.dontShow+'</button> - <button id="no" class="btn">'+message.close+'</button>' +
 	'</div>';
 jQuery('.noticeContainer').find('.bar').replaceWith(icerik);
 		jQuery('#yes').click(function () {

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notices-Duyurular 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 21:01+0200\n"
-"PO-Revision-Date: 2013-11-27 21:01+0200\n"
+"POT-Creation-Date: 2013-11-29 00:30+0200\n"
+"PO-Revision-Date: 2013-11-29 00:31+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -16,113 +16,112 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../default.js.php:98
-#: ../default.js.php:153
-#, fuzzy
-msgid "If you do not want to see again this notice,click \"do not show again\"."
-msgstr "Bu  duyuruyu bir daha görmek istemiyorsanız,bir daha gösterme butonuna basın."
+#: ../default.js.php:97
+#: ../default.js.php:157
+msgid "If you do not want to see again this notice,click &#34;do not show again&#34;."
+msgstr "Bu  duyuruyu bir daha görmek istemiyorsanız,\"Bir daha gösterme\" butonuna basın."
 
 #: ../default.js.php:99
-#: ../default.js.php:154
+#: ../default.js.php:158
 msgid "Do not show again"
 msgstr "Bir daha gösterme"
 
 #: ../default.js.php:99
-#: ../default.js.php:154
+#: ../default.js.php:158
 msgid "Close"
 msgstr "Kapat"
 
+#: ../Notices-Duyurular.php:73
 #: ../Notices-Duyurular.php:74
-#: ../Notices-Duyurular.php:75
 msgid "Notice"
 msgstr "Duyuru"
 
-#: ../Notices-Duyurular.php:76
-#: ../Notices-Duyurular.php:79
+#: ../Notices-Duyurular.php:75
+#: ../Notices-Duyurular.php:78
 msgid "New Notice"
 msgstr "Yeni Duyuru"
 
-#: ../Notices-Duyurular.php:77
+#: ../Notices-Duyurular.php:76
 msgid "Add New Notice"
 msgstr "Yeni Duyuru Ekle"
 
-#: ../Notices-Duyurular.php:78
+#: ../Notices-Duyurular.php:77
 msgid "Edit Notice"
 msgstr "Duyuruyu Düzenle"
 
-#: ../Notices-Duyurular.php:80
+#: ../Notices-Duyurular.php:79
 msgid "All Notice"
 msgstr "Tüm Duyurular"
 
-#: ../Notices-Duyurular.php:81
+#: ../Notices-Duyurular.php:80
 msgid "View Notice"
 msgstr "Duyuruyu Göster"
 
-#: ../Notices-Duyurular.php:82
+#: ../Notices-Duyurular.php:81
 msgid "Search Notice"
 msgstr "Duyuru Ara"
 
-#: ../Notices-Duyurular.php:83
+#: ../Notices-Duyurular.php:82
 msgid "Notice Not Found"
 msgstr "Duyuru bulunamadı"
 
-#: ../Notices-Duyurular.php:84
+#: ../Notices-Duyurular.php:83
 msgid "Notice Not Found In Trash"
 msgstr "Çöpte Duyuru bulunamadı"
 
-#: ../Notices-Duyurular.php:86
+#: ../Notices-Duyurular.php:85
 msgid "Notices"
 msgstr "Duyurular"
 
-#: ../Notices-Duyurular.php:107
+#: ../Notices-Duyurular.php:106
 msgid "Notice Settings"
 msgstr "Duyuru Ayarları"
 
-#: ../Notices-Duyurular.php:127
+#: ../Notices-Duyurular.php:126
 msgid "Who can see:"
 msgstr "Kimler Görebilir:"
 
-#: ../Notices-Duyurular.php:129
+#: ../Notices-Duyurular.php:128
 msgid "Everyone"
 msgstr "Herkes"
 
-#: ../Notices-Duyurular.php:130
+#: ../Notices-Duyurular.php:129
 msgid "Only User"
 msgstr "Sadece Üyeler"
 
-#: ../Notices-Duyurular.php:134
+#: ../Notices-Duyurular.php:133
 msgid "Display Mode:"
 msgstr "Gösterim Modu:"
 
-#: ../Notices-Duyurular.php:136
+#: ../Notices-Duyurular.php:135
 msgid "Window"
 msgstr "Pencere"
 
-#: ../Notices-Duyurular.php:137
+#: ../Notices-Duyurular.php:136
 msgid "Bar"
 msgstr "Şerit"
 
-#: ../Notices-Duyurular.php:142
+#: ../Notices-Duyurular.php:141
 msgid "Last display date"
 msgstr "Son Gösterim Tarihi"
 
-#: ../Notices-Duyurular.php:157
+#: ../Notices-Duyurular.php:156
 msgid "Type:"
 msgstr "Tipi:"
 
-#: ../Notices-Duyurular.php:159
+#: ../Notices-Duyurular.php:158
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ../Notices-Duyurular.php:162
+#: ../Notices-Duyurular.php:161
 msgid "Error"
 msgstr "Hata"
 
-#: ../Notices-Duyurular.php:165
+#: ../Notices-Duyurular.php:164
 msgid "Info"
 msgstr "Bilgi"
 
-#: ../Notices-Duyurular.php:168
+#: ../Notices-Duyurular.php:167
 msgid "Success"
 msgstr "Başarı"
 
