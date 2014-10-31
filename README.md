@@ -45,6 +45,19 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ## Changelog ##
 
+### 1.4.3 ###
+
+- maximun size changed
+- Localization bug fixed
+
+### 1.4.2 ###
+
+- Bug fix
+
+### 1.4.1 ###
+
+- Bug fix
+
 ### 1.4 ###
 
 - Change mark as read medhot

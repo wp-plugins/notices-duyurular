@@ -9,18 +9,31 @@ jQuery.fn.Window = function (content, isClass) {
 		if (isClass) this.content.remove();//window class ına sahip nesneleri sayfadan temizledik
 	}
 	/**
+	 * Duyurunun ekranda gösterim süresini alan fonksiyon
+	 */
+	this.getDisplayTime = jQuery.proxy(function () {
+		console.log(jQuery(this.content[this.currentIndex]).attr('displaytime'));
+	}, this);
+	/**
 	 * sayfadaki  konumu  yeniden  düzenler
 	 */
 	this.reLocate = function () {
-		jQuery('.window').css({'max-height': (window.innerHeight -100), 'max-width': (window.innerWidth - 100)});
-		var windowBoxWidth = jQuery('#windowBox').width();
-		var windowBoxHeight = jQuery('#windowBox').height();
-		var windowBoxLeft = (window.innerWidth - windowBoxWidth) / 2;
-		var windowBoxTop = (window.innerHeight - windowBoxHeight) / 2;
-		jQuery('#windowBox').css({
-			'left': windowBoxLeft,
-			'top' : windowBoxTop
-		});
+		jQuery('.window').css({'max-height': (window.innerHeight - 100), 'max-width': (window.innerWidth - 100)});
+		jQuery('.window *').css({'max-height': (window.innerHeight - 128), 'max-width': (window.innerWidth - 128)});
+		setTimeout(function(){
+			var windowBoxWidth = jQuery('#windowBox').width();
+			var windowBoxHeight = jQuery('#windowBox').children('.alert').outerHeight(); console.log('height='+windowBoxHeight);
+			var windowBoxLeft = (window.innerWidth - windowBoxWidth) / 2;
+			var windowBoxTop = (window.innerHeight - windowBoxHeight) / 2;console.log('top='+windowBoxTop);console.log('window.innerHeight='+window.innerHeight);
+			jQuery('#windowBox').css({
+				'left'      : windowBoxLeft,
+				'top'       : windowBoxTop,
+				'max-height': (window.innerHeight - 100),
+				'max-width' : (window.innerWidth - 100)
+			});
+		},500);//yeni boyuta göre yüksekliğin ayarlanması ve sonra konumlandırılması için bekleme
+
+
 	};
 
 	/**
@@ -32,6 +45,7 @@ jQuery.fn.Window = function (content, isClass) {
 		if (this.currentIndex < 0) this.currentIndex = this.content.length - 1;
 		jQuery('#windowBox').fadeOut(jQuery.proxy(function () {
 			jQuery('#windowBox').find('.window').replaceWith(this.content[this.currentIndex]);
+			this.getDisplayTime();
 			jQuery('#windowBox').css({'display': 'block'});
 			jQuery('.window .close').click(jQuery.proxy(function () {
 				this.hide();
@@ -50,6 +64,7 @@ jQuery.fn.Window = function (content, isClass) {
 		jQuery('#windowBox').fadeOut(jQuery.proxy(function () {
 			jQuery('#windowBox').css({'display': 'block'});
 			jQuery('#windowBox').find('.window').replaceWith(this.content[this.currentIndex]);
+			this.getDisplayTime();
 			jQuery('.window .close').click(jQuery.proxy(function () {
 				this.hide();
 			}, this));
@@ -61,10 +76,11 @@ jQuery.fn.Window = function (content, isClass) {
 	 */
 	this.show = function () {
 		this.getContent();
-		jQuery('body').append('<div id="windowBackground"><div class="windowBackground"></div></div>');
+		jQuery('body').append('<div id="windowBackground" class="notice-class"><div class="windowBackground"></div></div>');
 		jQuery('#windowBackground').append('<div id="windowBox" class=""></div>');//window class lı nesnenin ekleneceği div eklendi
 		if (isClass) {
 			jQuery('#windowBox').append(this.content[this.currentIndex]);
+			this.getDisplayTime();
 		} else {
 			jQuery('#windowBox').append(this.content);
 		}
@@ -90,12 +106,12 @@ jQuery.fn.Window = function (content, isClass) {
 	this.hide = function () {
 		var icerik = '<div class="alert window alert-info">' +
 				'<h4></h4>' +
-				'<p>'+message.content+'</p>' +
+				'<p>' + message.content + '</p>' +
 				'<div id="yes-no" class="center">' +
-					'<button id="yes" class="btn">'+message.dontShow+'</button> - <button id="no" class="btn">'+message.close+'</button>' +
+				'<button id="yes" class="btn">' + message.dontShow + '</button> - <button id="no" class="btn">' + message.close + '</button>' +
 				'</div>' +
-			'</div>';
-var genislik = jQuery('#windowBox').width();
+				'</div>';
+		var genislik = jQuery('#windowBox').width();
 		jQuery('#windowBox').find('.window').replaceWith(icerik);
 		jQuery('#windowBox .window').width(genislik);
 		jQuery('#yes-no #yes').click(jQuery.proxy(function () {
@@ -113,7 +129,7 @@ var genislik = jQuery('#windowBox').width();
 			} else {
 				close(jQuery('#windowBackground'));
 			}
-}, this));
+		}, this));
 		jQuery('#yes-no #no').click(jQuery.proxy(function () {
 			this.content.splice(this.currentIndex, 1);
 			if (this.content.length > 0) {
@@ -144,16 +160,24 @@ var duyuruWindow = jQuery(document.body).Window('.window', true);
 jQuery(document).ready(function () {
 	//adminbar yüksekiliği notice container e aktarılıyor
 	jQuery('.noticeContainer').css({'top': jQuery('#wpadminbar').height()});
+
 	jQuery('.bar .close').click(function () {
+		//Aktif duyurunun id bilgisi  alınıyor
 		var currentId = jQuery(this).parent()[0].id;
+
 		var reg = /\d/g;
-		currentId = currentId.match(reg).join('');
-var icerik ='<div class="bar alert alert-info">' +
-		'<h4></h4>' +
-		'<p></p>' +
-		'<button id="yes" class="btn">'+message.dontShow+'</button> - <button id="no" class="btn">'+message.close+'</button>' +
-	'</div>';
-jQuery('.noticeContainer').find('.bar').replaceWith(icerik);
+		currentId = currentId.match(reg).join(''); //id  değerinin sadece sayı olduğu doğrulanıyor.
+
+		// çoklu  dil desteği için message nesnesi kullanılıyor ilgili fonksiyon: GB_D_addScriptAndStyle
+		var icerik =
+				'<div class="bar alert alert-info">' +
+						'<h4></h4>' +
+						'<p>' + message.content + '</p>' +
+						'<button id="yes" class="btn">' + message.dontShow + '</button> - <button id="no" class="btn">' + message.close + '</button>' +
+				'</div>';
+
+		jQuery('.noticeContainer').find('#bar-' + currentId).replaceWith(icerik);
+
 		jQuery('#yes').click(function () {
 			jQuery.ajax({
 				type: "GET",
@@ -161,11 +185,13 @@ jQuery('.noticeContainer').find('.bar').replaceWith(icerik);
 			});
 			close(jQuery(this).parent());
 		});
+
 		jQuery('#no').click(function () {
 			close(jQuery(this).parent());
 		});
 	});
 });
+//Sayfa boyutu değiştirildiğinde duyuru yeniden konumlandırılıyor.
 jQuery(window).resize(function () {
 	duyuruWindow.reLocate();
 });
