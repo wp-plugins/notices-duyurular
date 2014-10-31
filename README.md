@@ -1,4 +1,4 @@
-===Notices-Duyurular===
+#Notices-Duyurular#
 Contributors: sametatabasch
 Tags: notice, duyuru,post_type,cookie
 Requires at least: 3.0.1
@@ -7,10 +7,10 @@ Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[TR] Wordpress sitenizde Duyurular yayınlamanızı sağlar.
+[TR] Wordpress sitenizde Duyurular yayınlamanızı sağlar.<a href="http://gencbilisim.net/notices-duyurular-eklentisi/">Detaylar</a>
 [EN] Easy way to adding notifications in your Wordpress site
 
-== Description ==
+## Description ##
 [TR]Bu  eklenti  wordpress blogunuzda duyurular yayınlamanızı  sağlıyor.Duyuruyu  yayınlarken şu ayarlamaları yapabiliyorsunuz:
 
 * Duyuruyu sitenize gelen herkes mi yoksa sadece Giriş  yapmış  kullanıcılar mı  görecek ?
@@ -29,54 +29,55 @@ Bunlara ek olarak  ziyaretci duyuruyu bir daha görmek istemediğinde gözükmes
   
 "If users click to "Don't show" they won't disturb with same notice again."
 
-= Translations =
+## Translations ##
 
 * English (en\_US), built-in
 * Turkish (tr\_TR), native support
 
-== Installation ==
+## Installation ##
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from admin's Plugins page.
 
-== Screenshots ==
+## Screenshots ##
 1. Example for Bar display mode. 
 2. Example for Window display mode.
 3. Example for add new notice page.
 
-== Changelog ==
+## Changelog ##
 
-= 1.4.3 =
+### 1.4.3 ###
 
 - maximun size changed
 - Localization bug fixed
 
-= 1.4.2 =
+### 1.4.2 ###
 
 - Bug fix
 
-= 1.4.1 =
+### 1.4.1 ###
 
 - Bug fix
 
-= 1.4 =
+### 1.4 ###
 
 - Change mark as read medhot
 - Added close button to window type
 
-= 1.3 =
+
+### 1.3 ###
 
 - Bug fix
 
-= 1.2 =
+### 1.2 ###
 
 - Conflict was resolved by admin bar for MP6 plugin
 
-= 1.1 =
+### 1.1 ###
 
 - Add window display mode
 - Add close effect
 
 
-= 1.0 =
+### 1.0 ###
 
 - Initial release.

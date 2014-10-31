@@ -4,7 +4,7 @@
  * Plugin URI: http://gencbilisim.net/notices-duyurular-eklentisi/
  * Description: Easy way to publish Notices in your Wordpress site
  * Author: Samet ATABAŞ
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author URI: http://www.gençbilişim.net
  * Text Domain: Notices-Duyurular
  * Domain Path: /lang
@@ -12,6 +12,11 @@
 //todo Multi  site için uyumlu  hale gelecek #14
 //todo Admin panelde  gözükmesi sağlanacak check box ile denetlenebilir.
 //todo * Çöpe taşınıca metaların boşalması #11
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 class GB_Duyurular {
 
 	/**
@@ -28,7 +33,7 @@ class GB_Duyurular {
 	 * wp_footer  a  eklenecek  duyuruların html kodlarını  barındırır
 	 * @var string
 	 */
-	public $noticeContent = '<div class="noticeContainer">';
+	public $noticeContent = '<div class="noticeContainer notice-class">';
 	/**
 	 * Çoklu dil için eklenti  text domain bilgisini tutar
 	 * @var string
@@ -41,9 +46,26 @@ class GB_Duyurular {
 	private $meta = array();
 
 	/**
+	 * The single instance of the class
+	 * @var null
+	 */
+	protected static $_instance = null;
+	/**
 	 * Pencere modunda duyurunun olup olmadığını  belirtir
 	 */
 	public $isThereWindowType = false;
+
+	/**
+	 *
+	 *
+	 * @return GB_Duyurular|null
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
 	public function __construct() {
 		$this->path    = plugin_dir_path( __FILE__ );
@@ -56,7 +78,7 @@ class GB_Duyurular {
 		add_action( 'wp_trash_post', array( &$this, 'GB_D_moveTrashNotice' ) );
 		add_action( 'trash_to_publish', array( &$this, 'GB_D_trashToPublish' ) );
 		add_action( 'wp_footer', array( &$this, 'GB_D_showNotice' ) );
-		add_action( 'wp_enqueue_scripts', array( &$this, 'GB_D_addScriptAndStyle' ) );
+		add_action( 'after_setup_theme', array( &$this, 'GB_D_addScriptAndStyle' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'GB_D_addStyleToAdminPage' ) );
 		add_action( 'template_redirect', array( &$this, 'GB_D_markAsRead' ) );
 
@@ -68,33 +90,28 @@ class GB_Duyurular {
 	 */
 	public function GB_D_addPostType() {
 		register_post_type( 'Notice',
-			array(
-				'labels'       => array(
-					'name'               => __( 'Notice', $this->textDomainString ),
-					'singular_name'      => __( 'Notice', $this->textDomainString ),
-					'add_new'            => __( 'New Notice', $this->textDomainString ),
-					'add_new_item'       => __( 'Add New Notice', $this->textDomainString ),
-					'edit_item'          => __( 'Edit Notice', $this->textDomainString ),
-					'new_item'           => __( 'New Notice', $this->textDomainString ),
-					'all_items'          => __( 'All Notice', $this->textDomainString ),
-					'view_item'          => __( 'View Notice', $this->textDomainString ),
-					'search_items'       => __( 'Search Notice', $this->textDomainString ),
-					'not_found'          => __( 'Notice Not Found', $this->textDomainString ),
-					'not_found_in_trash' => __( 'Notice Not Found In Trash', $this->textDomainString ),
-					'parent_item_colon'  => '',
-					'menu_name'          => __( 'Notices', $this->textDomainString )
-				),
-				'public'       => false,
-				'has_archive'  => true,
-				'show_ui'      => true,
-				'show_in_menu' => true,
-				'menu_icon'    => $this->pathUrl . 'duyuru.png'
-			)
+				array(
+						'labels'       => array(
+								'name'               => __( 'Notice', $this->textDomainString ),
+								'singular_name'      => __( 'Notice', $this->textDomainString ),
+								'add_new'            => __( 'New Notice', $this->textDomainString ),
+								'add_new_item'       => __( 'Add New Notice', $this->textDomainString ),
+								'edit_item'          => __( 'Edit Notice', $this->textDomainString ),
+								'new_item'           => __( 'New Notice', $this->textDomainString ),
+								'all_items'          => __( 'All Notice', $this->textDomainString ),
+								'view_item'          => __( 'View Notice', $this->textDomainString ),
+								'search_items'       => __( 'Search Notice', $this->textDomainString ),
+								'not_found'          => __( 'Notice Not Found', $this->textDomainString ),
+								'not_found_in_trash' => __( 'Notice Not Found In Trash', $this->textDomainString ),
+								'parent_item_colon'  => '',
+								'menu_name'          => __( 'Notices', $this->textDomainString )
+						),
+						'public'       => false,
+						'has_archive'  => true,
+						'show_ui'      => true,
+						'show_in_menu' => true,
+				)
 		);
-		/**
-		 * Admin paneline eklenecek style dosyasını wp scriptlerine ekleriyor
-		 */
-		wp_register_style( 'notice_style', plugins_url( 'style.css', __FILE__ ) );
 	}
 
 	/**
@@ -114,7 +131,8 @@ class GB_Duyurular {
 		$this->GB_D_getMeta( $post_id );
 		if ( empty( $this->meta['lastDisplayDate'] ) ) {
 			$date = $this->GB_D_getDate();
-			$date['month'] ++;
+			$date['month'] ++; // ön tanımlı tarih o anın bir ay sonrası
+			if ( $date['month'] < 10 ) $date['month'] = '0' . $date['month'];
 		}
 		else {
 			$date = $this->GB_D_getDate( $this->meta['lastDisplayDate'] );
@@ -123,14 +141,14 @@ class GB_Duyurular {
 		echo '
 		<form>
 		  <div class="misc-pub-section">
-		    <span><b>' . __( 'Who can see:', $this->textDomainString ) . '</b></span>
+		    <span><b>' . __( 'Who can see :', $this->textDomainString ) . '</b></span>
 		    <select name="GB_D_meta[whoCanSee]">
 		      <option ' . selected( $this->meta['whoCanSee'], 'everyone', false ) . ' value="everyone">' . __( 'Everyone', $this->textDomainString ) . '</option>
 		      <option ' . selected( $this->meta['whoCanSee'], 'onlyUser', false ) . ' value="onlyUser">' . __( 'Only User', $this->textDomainString ) . '</option>
 		    </select>
 		  </div>
 		  <div class="misc-pub-section">
-		    <span><b>' . __( 'Display Mode:', $this->textDomainString ) . '</b></span>
+		    <span><b>' . __( 'Display Mode :', $this->textDomainString ) . '</b></span>
 		    <select name="GB_D_meta[displayMode]">
 		      <option ' . selected( $this->meta['displayMode'], 'window', false ) . ' value="window">' . __( 'Window', $this->textDomainString ) . '</option>
 		      <option ' . selected( $this->meta['displayMode'], 'bar', false ) . ' value="bar">' . __( 'Bar', $this->textDomainString ) . '</option>
@@ -138,7 +156,7 @@ class GB_Duyurular {
 		  </div>
 		  <div class="clear"></div>
 		  <div class="misc-pub-section curtime">
-		    <span id="timestamp"><b>' . __( 'Last display date', $this->textDomainString ) . '</b></span>
+		    <span id="timestamp"><b>' . __( 'Last display date :', $this->textDomainString ) . '</b></span>
 		    <br/>
 		    <input type="text" maxlength="2" size="2" value="' . $date["day"] . '" name="GB_D_date[day]" id="jj">.
 		    <select name="GB_D_date[month]" id="mm">';
@@ -152,8 +170,8 @@ class GB_Duyurular {
 		    </select>.
 		    <input type="text" maxlength="4" size="4" value="' . $date["year"] . '" name="GB_D_date[year]" id="aa">@<input type="text" maxlength="2" size="2" value="' . $date["hour"] . '" name="GB_D_date[hour]" id="hh">:<input type="text" maxlength="2" size="2" value="' . $date["minute"] . '" name="GB_D_date[minute]" id="mn">
 		  </div>
-		  <div class="misc-pub-section misc-pub-section-last">
-		    <span><b>' . __( 'Type:', $this->textDomainString ) . '</b></span>
+		  <div class="misc-pub-section">
+		    <span><b>' . __( 'Type :', $this->textDomainString ) . '</b></span>
 		    <div class="alert">
 		      <input type="radio" ' . checked( $this->meta['type'], "", false ) . ' name="GB_D_meta[type]" value="">' . __( 'Default', $this->textDomainString ) . '
 		    </div>
@@ -166,8 +184,18 @@ class GB_Duyurular {
 		    <div class="alert alert-success">
 		      <input type="radio" ' . checked( $this->meta['type'], "alert-success", false ) . ' name="GB_D_meta[type]" value="alert-success">' . __( 'Success', $this->textDomainString ) . '
 		    </div>
-		    <div class="clear"></div>
+		 		<div class="clear"></div>
 		  </div>
+		  <div class="misc-pub-section misc-pub-section-last">
+		  	<span><b>' . __( 'No Border :', $this->textDomainString ) . '</b></span>
+		  	<input type="checkbox" name="GB_D_meta[noBorder]" ' . checked( $this->meta['noBorder'], 'on', false ) . ' />
+		  </div>';
+		/*<div class="misc-pub-section misc-pub-section-last">
+		  	<span><b>' . __( 'Display Time :', $this->textDomainString ) . '</b></span>
+		  	<input type="text" name="GB_D_meta[displayTime]" value="' . $this->meta['displayTime'] . '" />
+		  </div>
+		 */
+		echo '
 		</form>';
 	}
 
@@ -242,7 +270,7 @@ class GB_Duyurular {
 		$out     = array();
 		foreach ( $notices as $notice ) {
 			$this->GB_D_getMeta( $notice['ID'] );
-			$notice = array_merge( $notice, $this->meta );
+			$notice = array_merge( $notice, $this->meta ); //Meta bilgileri  ekleniyor.
 			$out[]  = $notice;
 		}
 		//echo '<pre>';print_r( $out );echo '</pre>';
@@ -262,22 +290,23 @@ class GB_Duyurular {
 			if ( $this->GB_D_isRead( $notice['ID'] ) ) continue;
 			switch ( $notice['displayMode'] ) {
 				case 'window':
-					$this->isThereWindowType = true;
+					$this->isThereWindowType = true; // pencere  görünümünü sağlayan scriptin sayfaya eklenemesini sağlamak için
+					$notice['noBorder'] === 'on' ? $noBorder = 'noborder' : $noBorder = ''; //set noborder class
 					if ( $notice['whoCanSee'] == 'everyone' ) {
 						$this->noticeContent .= '
-					  <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . '" >
-					  	<button type="button" class="close" >&times;</button>
-					    <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
-					    ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
+					  <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . ' ' . $noBorder . '" displayTime="' . $notice['displayTime'] . '" >
+					  	<button type="button" class="close" >&times;</button>';
+						if ( get_the_title( $notice["ID"] ) != '' ) $this->noticeContent .= '<h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>';
+						$this->noticeContent .= do_shortcode( wpautop( $notice['post_content'] ) ) . '
 					  </div>';
 					}
 					else {
 						if ( is_user_logged_in() ) {
 							$this->noticeContent .= '
-						    <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . '" >
-						    	<button type="button" class="close" >&times;</button>
-						      <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
-						      ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
+						    <div id="fancy-' . $notice['ID'] . '" class="alert window ' . $notice['type'] . ' ' . $noBorder . $this->meta['noBorder'] . '" displayTime="' . $notice['displayTime'] . '">
+						    	<button type="button" class="close" >&times;</button>';
+							if ( get_the_title( $notice["ID"] ) != '' ) $this->noticeContent .= '<h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>';
+							$this->noticeContent .= do_shortcode( wpautop( $notice['post_content'] ) ) . '
 						    </div>';
 						}
 					}
@@ -286,18 +315,18 @@ class GB_Duyurular {
 					if ( $notice['whoCanSee'] == 'everyone' ) {
 						$this->noticeContent .= '
 					    <div id="bar-' . $notice['ID'] . '" class="bar alert ' . $notice['type'] . '">
-					      <button type="button" class="close" >&times;</button>
-					      <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
-					      ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
+					      <button type="button" class="close" >&times;</button>';
+						if ( get_the_title( $notice["ID"] ) != '' ) $this->noticeContent .= '<h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>';
+						$this->noticeContent .= do_shortcode( wpautop( $notice['post_content'] ) ) . '
 					    </div>';
 					}
 					else {
 						if ( is_user_logged_in() ) {
 							$this->noticeContent .= '
 						  <div id="bar-' . $notice['ID'] . '" class="bar alert ' . $notice['type'] . '">
-						    <button type="button" class="close">&times;</button>
-						    <h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>
-						    ' . do_shortcode( wpautop( $notice['post_content'] ) ) . '
+						    <button type="button" class="close" >&times;</button>';
+							if ( get_the_title( $notice["ID"] ) != '' ) $this->noticeContent .= '<h4>' . ucfirst( get_the_title( $notice["ID"] ) ) . '</h4>';
+							$this->noticeContent .= do_shortcode( wpautop( $notice['post_content'] ) ) . '
 						  </div>';
 						}
 					}
@@ -332,13 +361,42 @@ class GB_Duyurular {
 	}
 
 	/**
-	 * style ve script dosyalarını  yükler
-	 * add_action('wp_enqueue_scripts', array(&$this, 'GB_D_addScriptAndStyle'));
+	 * Tema yüklendikten sonra script ve style  dosyalarını  ekler
+	 * add_action( 'after_setup_theme', array( &$this, 'GB_D_addScriptAndStyle' ) );
 	 */
 	public function  GB_D_addScriptAndStyle() {
+		add_action( 'wp_enqueue_scripts', array( &$this, 'GB_D_enqueueScriptAndStyle' ) );
+	}
+
+	/**
+	 * style ve script dosyalarını  yükler
+	 * add_action('wp_enqueue_scripts', array(&$this, 'GB_D_enqueueScriptAndStyle'));
+	 */
+	public function  GB_D_enqueueScriptAndStyle() {
+
+		wp_register_script( 'notice', plugins_url( 'default.js', __FILE__ ), array( 'jquery' ) );
+
+		wp_register_style( 'notice_style', plugins_url( 'style.css', __FILE__ ), array( 'notice_style-reset' ) );
+		wp_register_style( 'notice_style-reset', plugins_url( 'style-reset.css', __FILE__ ) );
+
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_style( 'notice_style', plugins_url( 'style.css', __FILE__ ) );
-		wp_enqueue_script( 'notice', plugins_url( 'default.js.php', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_style( 'notice_style' );
+		wp_enqueue_style( 'notice_style-reset' );
+		wp_enqueue_script( 'notice' );
+
+		/*
+		 *  Javascript dosyasında çoklu  dil  desteği
+		 * <?php wp_localize_script( $handle, $name, $data ); ?>
+		 * $handle -> Çoklu  dil  desteğinin  sağlanacağı js dosyasının enqueue kayıt ismi
+		 * $name   -> Dizeleri  taşıyan java nesnesinin  adı
+		 * $data   -> Dil desteği  sağlanan dizeler
+		 */
+		$translation_array = array(
+				'content'  => __( 'If you do not want to see again this notice,click &#34;do not show again&#34;.', $this->textDomainString ),
+				'dontShow' => __( 'Do not show again', $this->textDomainString ),
+				'close'    => __( 'Close', $this->textDomainString )
+		);
+		wp_localize_script( 'notice', 'message', $translation_array );
 	}
 
 	/**
@@ -346,6 +404,13 @@ class GB_Duyurular {
 	 * add_action('admin_enqueue_scripts', array(&$this, 'GB_D_addStyleToAdminPage'));
 	 */
 	public function GB_D_addStyleToAdminPage() {
+		/**
+		 * Admin paneline eklenecek style dosyasını wordpress e kaydediyorum
+		 */
+		wp_register_style( 'notice_style', plugins_url( 'style.css', __FILE__ ) );
+		/**
+		 * Admin paneline eklenecek style dosyasını wordpress e ekliyorum
+		 */
 		wp_enqueue_style( 'notice_style' );
 	}
 
@@ -397,6 +462,10 @@ class GB_Duyurular {
 			}
 			else continue;
 		}
+		/**
+		 * Okundu işareti kaldırılan duyurunun eğer cookiesi  varsa o cookie yi siliyor
+		 * okunması olarak işaretle işlemini kullanıcı kendisi yapamadığı için bu işlem şimdilik amaçsız
+		 */
 		if ( isset( $_COOKIE["GB_D_{$blog_id}_okunanDuyurular"] ) ) {
 			$okunanDuyurular = $_COOKIE["GB_D_{$blog_id}_okunanDuyurular"];
 			if ( array_key_exists( $noticeId, $okunanDuyurular ) ) {
@@ -444,12 +513,12 @@ class GB_Duyurular {
 	public function GB_D_getDate( $date = null, $mktime = false ) {
 		if ( is_null( $date ) ) $date = date_i18n( 'Y-m-d H:i:s' );
 		$datearr = array(
-			'year'   => substr( $date, 0, 4 ),
-			'month'  => substr( $date, 5, 2 ),
-			'day'    => substr( $date, 8, 2 ),
-			'hour'   => substr( $date, 11, 2 ),
-			'minute' => substr( $date, 14, 2 ),
-			'second' => substr( $date, 17, 2 )
+				'year'   => substr( $date, 0, 4 ),
+				'month'  => substr( $date, 5, 2 ),
+				'day'    => substr( $date, 8, 2 ),
+				'hour'   => substr( $date, 11, 2 ),
+				'minute' => substr( $date, 14, 2 ),
+				'second' => substr( $date, 17, 2 )
 		);
 		if ( $mktime ) {
 			return mktime( $datearr['hour'], $datearr['minute'], $datearr['second'], $datearr['month'], $datearr['day'], $datearr['year'] );
@@ -468,14 +537,21 @@ class GB_Duyurular {
 		$date['month'] ++;
 		$lastDisplayDate = $date['year'] . '-' . $date['month'] . '-' . $date['day'] . ' ' . $date['hour'] . ':' . $date['minute'] . ':00';
 		$this->meta      = array(
-			'whoCanSee'       => 'everyone',
-			'displayMode'     => 'window',
-			'lastDisplayDate' => $lastDisplayDate,
-			'type'            => ''
+				'whoCanSee'       => 'everyone',
+				'displayMode'     => 'window',
+				'lastDisplayDate' => $lastDisplayDate,
+				'type'            => ''
 		);
 		update_post_meta( $post_id, 'GB_D_meta', $this->meta );
 	}
 }
 
-$GB_Duyurular = new GB_Duyurular();
-?>
+/**
+ * GB_Duyurular sınıfını  çağırır
+ * @return GB_Duyurular|null
+ */
+function GB_D() {
+	return GB_Duyurular::instance();
+}
+
+$GLOBALS['GB_D'] = GB_D();
