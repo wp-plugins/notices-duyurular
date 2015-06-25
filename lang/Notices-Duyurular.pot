@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notices-Duyurular 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 18:55+0200\n"
-"PO-Revision-Date: 2014-10-31 18:55+0200\n"
+"POT-Creation-Date: 2015-04-21 14:31+0200\n"
+"PO-Revision-Date: 2015-04-21 14:31+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,112 +15,122 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../Notices-Duyurular.php:95 ../Notices-Duyurular.php:96
+#: ../Notices-Duyurular.php:96 ../Notices-Duyurular.php:97
 msgid "Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:97 ../Notices-Duyurular.php:100
+#: ../Notices-Duyurular.php:98 ../Notices-Duyurular.php:101
 msgid "New Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:98
+#: ../Notices-Duyurular.php:99
 msgid "Add New Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:99
+#: ../Notices-Duyurular.php:100
 msgid "Edit Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:101
+#: ../Notices-Duyurular.php:102
 msgid "All Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:102
+#: ../Notices-Duyurular.php:103
 msgid "View Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:103
+#: ../Notices-Duyurular.php:104
 msgid "Search Notice"
 msgstr ""
 
-#: ../Notices-Duyurular.php:104
+#: ../Notices-Duyurular.php:105
 msgid "Notice Not Found"
 msgstr ""
 
-#: ../Notices-Duyurular.php:105
+#: ../Notices-Duyurular.php:106
 msgid "Notice Not Found In Trash"
 msgstr ""
 
-#: ../Notices-Duyurular.php:107
+#: ../Notices-Duyurular.php:108
 msgid "Notices"
 msgstr ""
 
-#: ../Notices-Duyurular.php:123
+#: ../Notices-Duyurular.php:124
 msgid "Notice Settings"
 msgstr ""
 
-#: ../Notices-Duyurular.php:144
+#: ../Notices-Duyurular.php:149
 msgid "Who can see :"
 msgstr ""
 
-#: ../Notices-Duyurular.php:146
+#: ../Notices-Duyurular.php:151
 msgid "Everyone"
 msgstr ""
 
-#: ../Notices-Duyurular.php:147
+#: ../Notices-Duyurular.php:152
 msgid "Only User"
 msgstr ""
 
-#: ../Notices-Duyurular.php:151
+#: ../Notices-Duyurular.php:156
 msgid "Display Mode :"
 msgstr ""
 
-#: ../Notices-Duyurular.php:153
+#: ../Notices-Duyurular.php:158
 msgid "Window"
 msgstr ""
 
-#: ../Notices-Duyurular.php:154
+#: ../Notices-Duyurular.php:159
 msgid "Bar"
 msgstr ""
 
-#: ../Notices-Duyurular.php:159
+#: ../Notices-Duyurular.php:164
 msgid "Last display date :"
 msgstr ""
 
-#: ../Notices-Duyurular.php:174
+#: ../Notices-Duyurular.php:179
 msgid "Type :"
 msgstr ""
 
-#: ../Notices-Duyurular.php:176
+#: ../Notices-Duyurular.php:181
 msgid "Default"
 msgstr ""
 
-#: ../Notices-Duyurular.php:179
+#: ../Notices-Duyurular.php:184
+msgid "White"
+msgstr ""
+
+#: ../Notices-Duyurular.php:187
 msgid "Error"
 msgstr ""
 
-#: ../Notices-Duyurular.php:182
+#: ../Notices-Duyurular.php:190
 msgid "Info"
 msgstr ""
 
-#: ../Notices-Duyurular.php:185
+#: ../Notices-Duyurular.php:193
 msgid "Success"
 msgstr ""
 
-#: ../Notices-Duyurular.php:190
+#: ../Notices-Duyurular.php:198
 msgid "No Border :"
 msgstr ""
 
-#: ../Notices-Duyurular.php:395
+#: ../Notices-Duyurular.php:383
 msgid ""
 "If you do not want to see again this notice,click &#34;do not show "
 "again&#34;."
 msgstr ""
 
-#: ../Notices-Duyurular.php:396
+#: ../Notices-Duyurular.php:384
 msgid "Do not show again"
 msgstr ""
 
-#: ../Notices-Duyurular.php:397
+#: ../Notices-Duyurular.php:385
 msgid "Close"
+msgstr ""
+
+#: ../Notices-Duyurular.php:388
+msgid ""
+"if you close notices with click background, you see notices again and again. "
+"İf you dont want see notices again, close notices with close button."
 msgstr ""

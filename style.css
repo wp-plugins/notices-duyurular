@@ -65,6 +65,16 @@
 	color: #3a87ad;
 }
 
+.alert-white{
+	color: #555555;
+	background-color: #ffffff;
+	border-color: #EEEEEE;
+}
+
+.alert-white h4,
+.alert-white p{
+	color: #000000;
+}
 .alert .close {
 	position: relative;
 	top: 0px;
@@ -149,24 +159,27 @@ button.close {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.85);
-	z-index: 999998;
+	z-index: 2147483645;
 }
 
 .window {
 	overflow: auto;
 	min-height: 50px;
 	min-width: 200px;
+	z-index: 2147483646;
+	display: none;
 }
 
 #windowBox {
-	background-color: rgba(0, 0, 0, 0.85);
-	position: fixed;
+	background: transparent;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	z-index: 999999;
-	max-width: 95%;
+	z-index: 2147483647;
+	margin: 0 auto;
+	padding: 0;
 	max-height: 95%;
+	position: relative;
 }
 
 .window-nav {
@@ -231,7 +244,7 @@ button.close {
 	content: "\f488";
 }
 
-.noborder * {
+.noborder, .noborder * {
 	margin: 0 !important;
 	padding: 0 !important;
 	overflow: hidden !important;
@@ -242,4 +255,55 @@ button.close {
 	right: -20px;
 	opacity: 1;
 	color: #fff;
+}
+
+#GBWindow {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+/*Loading animation*/
+#noticeLoading.spinner {
+	margin: 100px auto 0;
+	width: 70px;
+	text-align: center;
+}
+
+#noticeLoading.spinner > div {
+	width: 18px;
+	height: 18px;
+	background-color: #333;
+
+	border-radius: 100%;
+	display: inline-block;
+	-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+	animation: bouncedelay 1.4s infinite ease-in-out;
+	/* Prevent first frame from flickering when animation starts */
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+#noticeLoading.spinner .bounce1 {
+	-webkit-animation-delay: -0.32s;
+	animation-delay: -0.32s;
+}
+
+#noticeLoading.spinner .bounce2 {
+	-webkit-animation-delay: -0.16s;
+	animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+	0%, 80%, 100% { -webkit-transform: scale(0.0) }
+	40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	} 40% {
+			transform: scale(1.0);
+			-webkit-transform: scale(1.0);
+		}
 }
