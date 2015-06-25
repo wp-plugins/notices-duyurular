@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Notices-Duyurular 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 18:56+0200\n"
-"PO-Revision-Date: 2014-10-31 18:56+0200\n"
+"POT-Creation-Date: 2015-04-21 14:31+0200\n"
+"PO-Revision-Date: 2015-04-21 14:56+0200\n"
 "Last-Translator: Samet ATABAŞ <sametatabasch@gmail.com>\n"
 "Language-Team: \n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,106 +14,109 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: tr_TR\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../Notices-Duyurular.php:95 ../Notices-Duyurular.php:96
+#: ../Notices-Duyurular.php:96 ../Notices-Duyurular.php:97
 msgid "Notice"
 msgstr "Duyuru"
 
-#: ../Notices-Duyurular.php:97 ../Notices-Duyurular.php:100
+#: ../Notices-Duyurular.php:98 ../Notices-Duyurular.php:101
 msgid "New Notice"
 msgstr "Yeni Duyuru"
 
-#: ../Notices-Duyurular.php:98
+#: ../Notices-Duyurular.php:99
 msgid "Add New Notice"
 msgstr "Yeni Duyuru Ekle"
 
-#: ../Notices-Duyurular.php:99
+#: ../Notices-Duyurular.php:100
 msgid "Edit Notice"
 msgstr "Duyuruyu Düzenle"
 
-#: ../Notices-Duyurular.php:101
+#: ../Notices-Duyurular.php:102
 msgid "All Notice"
 msgstr "Tüm Duyurular"
 
-#: ../Notices-Duyurular.php:102
+#: ../Notices-Duyurular.php:103
 msgid "View Notice"
 msgstr "Duyuruyu Göster"
 
-#: ../Notices-Duyurular.php:103
+#: ../Notices-Duyurular.php:104
 msgid "Search Notice"
 msgstr "Duyuru Ara"
 
-#: ../Notices-Duyurular.php:104
+#: ../Notices-Duyurular.php:105
 msgid "Notice Not Found"
 msgstr "Duyuru bulunamadı"
 
-#: ../Notices-Duyurular.php:105
+#: ../Notices-Duyurular.php:106
 msgid "Notice Not Found In Trash"
 msgstr "Çöpte Duyuru bulunamadı"
 
-#: ../Notices-Duyurular.php:107
+#: ../Notices-Duyurular.php:108
 msgid "Notices"
 msgstr "Duyurular"
 
-#: ../Notices-Duyurular.php:123
+#: ../Notices-Duyurular.php:124
 msgid "Notice Settings"
 msgstr "Duyuru Ayarları"
 
-#: ../Notices-Duyurular.php:144
+#: ../Notices-Duyurular.php:149
 msgid "Who can see :"
 msgstr "Kimler Görebilir:"
 
-#: ../Notices-Duyurular.php:146
+#: ../Notices-Duyurular.php:151
 msgid "Everyone"
 msgstr "Herkes"
 
-#: ../Notices-Duyurular.php:147
+#: ../Notices-Duyurular.php:152
 msgid "Only User"
 msgstr "Sadece Üyeler"
 
-#: ../Notices-Duyurular.php:151
+#: ../Notices-Duyurular.php:156
 msgid "Display Mode :"
 msgstr "Gösterim Modu:"
 
-#: ../Notices-Duyurular.php:153
+#: ../Notices-Duyurular.php:158
 msgid "Window"
 msgstr "Pencere"
 
-#: ../Notices-Duyurular.php:154
+#: ../Notices-Duyurular.php:159
 msgid "Bar"
 msgstr "Şerit"
 
-#: ../Notices-Duyurular.php:159
+#: ../Notices-Duyurular.php:164
 msgid "Last display date :"
 msgstr "Son Gösterim Tarihi"
 
-#: ../Notices-Duyurular.php:174
+#: ../Notices-Duyurular.php:179
 msgid "Type :"
 msgstr "Tipi:"
 
-#: ../Notices-Duyurular.php:176
+#: ../Notices-Duyurular.php:181
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ../Notices-Duyurular.php:179
+#: ../Notices-Duyurular.php:184
+msgid "White"
+msgstr "Beyaz"
+
+#: ../Notices-Duyurular.php:187
 msgid "Error"
 msgstr "Hata"
 
-#: ../Notices-Duyurular.php:182
+#: ../Notices-Duyurular.php:190
 msgid "Info"
 msgstr "Bilgi"
 
-#: ../Notices-Duyurular.php:185
+#: ../Notices-Duyurular.php:193
 msgid "Success"
 msgstr "Başarı"
 
-#: ../Notices-Duyurular.php:190
+#: ../Notices-Duyurular.php:198
 msgid "No Border :"
 msgstr "Kenarlıksız"
 
-#: ../Notices-Duyurular.php:395
+#: ../Notices-Duyurular.php:383
 msgid ""
 "If you do not want to see again this notice,click &#34;do not show "
 "again&#34;."
@@ -120,13 +124,22 @@ msgstr ""
 "Bu  duyuruyu bir daha görmek istemiyorsanız,\"Bir daha gösterme\" butonuna "
 "basın."
 
-#: ../Notices-Duyurular.php:396
+#: ../Notices-Duyurular.php:384
 msgid "Do not show again"
 msgstr "Bir daha gösterme"
 
-#: ../Notices-Duyurular.php:397
+#: ../Notices-Duyurular.php:385
 msgid "Close"
 msgstr "Kapat"
+
+#: ../Notices-Duyurular.php:388
+msgid ""
+"if you close notices with click background, you see notices again and again. "
+"İf you dont want see notices again, close notices with close button."
+msgstr ""
+"Eğer duyuruyu arkaplana tıklayarak kapatırsanız duyuru her ziyaretinizde "
+"tekrar görünür. Tekrar gözükmesini istemiyorsanız kapatma butunu ile "
+"kapatınız."
 
 #~ msgid "Don't Show"
 #~ msgstr "Gösterme"
