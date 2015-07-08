@@ -47,6 +47,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ### 1.6 ###
 
+- Fix directory bug
+
+### 1.6 ###
+
 - Bug fix
 
 ### 1.5 ###
