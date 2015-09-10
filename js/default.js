@@ -35,7 +35,12 @@ jQuery(document).ready(function ($) {
 			'		<div class="bounce2"></div>' +
 			'		<div class="bounce3"></div>' +
 			'</div>';
-
+		/**
+		 * ileri  ve geri  butonları
+		 * @type {*|jQuery|HTMLElement}
+		 */
+		var previousButton = $('<a title="Previous" class="window-nav window-nav-previous" href="javascript:;"><span></span></a>');
+		var nextButton = $('<a title="Next" class="window-nav window-nav-next" href="javascript:;"><span></span></a>');
 		/**
 		 * bir mili saniye erteleme sonrası sayfa boyutlarına göre maksimum ve minimum boyutları belirler ve uygular
 		 */
@@ -84,8 +89,7 @@ jQuery(document).ready(function ($) {
 		 * eğer birden fazla duyuru varsa ileri ve geri butonları ekleniyor
 		 */
 		if (notices.length > 1) {
-			var previousButton = $('<a title="Previous" class="window-nav window-nav-previous" href="javascript:;"><span></span></a>');
-			var nextButton = $('<a title="Next" class="window-nav window-nav-next" href="javascript:;"><span></span></a>');
+
 			$('#windowBox').append(nextButton);
 			$('#windowBox').append(previousButton);
 			/**
